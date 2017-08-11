@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ludovigh.sig.imapper.ProveedorMapper">
+	<select id="getAllProveedores" resultType="Proveedor">
+		select * from proveedor
+	</select>
+	<select id="getProveedorById" parameterType="int" resultType="Proveedor">
+		select * from proveedor where id = #{id}
+	</select>
+
+	<insert id="insertarProveedor" useGeneratedKeys="true"
+		parameterType="Proveedor">
+		insert into proveedor
+		(cedula_ruc,nombrecia,nombrecontacto,direccioncli,email)
+		values
+		(#{proveedor.cedula_ruc},#{proveedor.nombrecia},#{proveedor.nombrecontacto},#{proveedor.direccioncli},#{proveedor.email})
+	</insert>
+
+	<update id="updateProveedor" parameterType="Proveedor">
+		update proveedor set
+		cedula_ruc = #{proveedor.cedula_ruc},
+		nombrecia = #{proveedor.nombrecia},
+		nombrecontacto = #{proveedor.nombrecontacto},
+		email = #{proveedor.email},
+		direccioncli = #{proveedor.direccioncli}
+		where id = #{id}
+	</update>
+	<delete id="deleteProveedor">
+		delete from proveedor where id =#{id}
+	</delete>
+
+</mapper>

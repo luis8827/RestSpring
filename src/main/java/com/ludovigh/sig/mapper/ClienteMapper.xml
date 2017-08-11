@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ludovigh.sig.imapper.ClienteMapper">
+
+	<select id="getAllClientes" resultType="Cliente">
+		select * from cliente
+	</select>
+	<select id="getClienteById" parameterType="int" resultType="Cliente">
+		select * from cliente where id = #{id}
+	</select>
+
+	<insert id="insertarCliente" useGeneratedKeys="true" parameterType="Cliente">
+		insert into cliente
+		(cedula_ruc,nombrecia,nombrecontacto,direccioncli,email)
+		values
+		(#{cliente.cedula_ruc},#{cliente.nombrecia},#{cliente.nombrecontacto},#{cliente.direccioncli},#{cliente.email})
+	</insert>
+
+	<update id="updateCliente" parameterType="Cliente">
+		update cliente set
+		cedula_ruc = #{cliente.cedula_ruc},
+		nombrecia = #{cliente.nombrecia},
+		nombrecontacto = #{cliente.nombrecontacto},
+		email = #{cliente.email},
+		direccioncli = #{cliente.direccioncli}
+		where id = #{id}
+	</update>
+	<delete id="deleteCliente" >
+		delete from cliente where id = #{id}
+	</delete>
+</mapper>

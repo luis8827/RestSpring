@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ludovigh.sig.imapper.OrdenDetalleMapper">
+	<select id="getAllOrdenDetalles" resultType="OrdenDetalle">
+		select * from orden_detalle
+	</select>
+	<select id="getOrdenDetalleById" parameterType="int" resultType="OrdenDetalle">
+		select * from orden_detalle where id = #{id}
+	</select>
+
+	<insert id="insertarOrdenDetalle" useGeneratedKeys="true"
+		parameterType="OrdenDetalle">
+		insert into orden_detalle
+		(cedula_ruc,nombrecia,nombrecontacto,direccioncli,email)
+		values
+		(#{orden_detalle.cedula_ruc},#{orden_detalle.nombrecia},#{orden_detalle.nombrecontacto},#{orden_detalle.direccioncli},#{orden_detalle.email})
+	</insert>
+
+	<update id="updateOrdenDetalle" parameterType="OrdenDetalle">
+		update orden_detalle set
+		cedula_ruc = #{orden_detalle.cedula_ruc},
+		nombrecia = #{orden_detalle.nombrecia},
+		nombrecontacto = #{orden_detalle.nombrecontacto},
+		email = #{orden_detalle.email},
+		direccioncli = #{orden_detalle.direccioncli}
+		where id = #{id}
+	</update>
+	<delete id="deleteOrdenDetalle">
+		delete from orden_detalle where id =
+		#{id}
+	</delete>
+
+</mapper>
